@@ -1,8 +1,8 @@
-import { Box } from "@chakra-ui/react";
-import React from "react";
+import { Box } from '@chakra-ui/react'
+import React from 'react'
 
 const Header = (): JSX.Element => {
-  return <Box>Header</Box>;
-};
+  return <Box>Header</Box>
+}
 
-export default Header;
+export default Header
