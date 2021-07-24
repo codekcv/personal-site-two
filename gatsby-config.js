@@ -3,5 +3,17 @@ module.exports = {
     siteUrl: "https://www.yourdomain.tld",
     title: "personal-site-two",
   },
-  plugins: [],
+  plugins: [
+    {
+      resolve: "gatsby-plugin-typescript",
+      options: {
+        isTSX: true,
+        jsxPragma: "react-jsx",
+        allExtensions: true,
+      },
+    },
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "@chakra-ui/gatsby-plugin",
+  ],
 };
