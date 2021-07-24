@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
 
@@ -8,10 +9,14 @@ export const projects = [
     title: 'Headless Commerce',
     description:
       'An open-source pluggable full-stack headless commerce solution made with TypeScript, React, Node.js, and GraphQL.',
-    img: '../../../images/headless_2.png'
+    img: (
+      <StaticImage
+        src="../../../images/headless_2.png"
+        width={700}
+        height={340}
+        placeholder="blurred"
+        alt="An open-source pluggable full-stack headless commerce solution made with TypeScript, React, Node.js, and GraphQL."
+      />
+    )
   }
-].map((item) => (
-  <Card key={item.title}>
-    <StaticImage src={item.img} placeholder="blurred" alt={item.description} />
-  </Card>
-))
+].map((item) => <Card key={item.title}>{item.img}</Card>)
