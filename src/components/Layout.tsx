@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 
 import Footer from './Footer/Footer.main'
@@ -6,11 +6,22 @@ import Header from './Header/Header.main'
 
 const Layout: React.FC = ({ children }) => {
   return (
-    <Box as="main" maxWidth={768} pt="6rem" mx="auto">
-      <Header />
-      {children}
+    <Flex
+      as="main"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      maxWidth={768}
+      mx="auto"
+    >
+      <Box w="100%" flex={1}>
+        <Header />
+        {children}
+      </Box>
+
       <Footer />
-    </Box>
+    </Flex>
   )
 }
 
