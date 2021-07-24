@@ -33,5 +33,5 @@ module.exports = {
     'no-use-before-define': 'off',
     'multiline-ternary': 'off'
   },
-  ignorePatterns: ['gatsby-config.js']
+  ignorePatterns: ['gatsby-*.js']
 }
