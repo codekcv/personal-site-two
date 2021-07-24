@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Heading, Text } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { StaticImage } from 'gatsby-plugin-image'
 import React, { useEffect, useState } from 'react'
@@ -51,13 +51,13 @@ const Hero = (): JSX.Element => {
           />
 
           <Bobble>
-            <Text
+            <Heading
               as="h1"
               fontSize={64}
               textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
             >
               Christian Villamin
-            </Text>
+            </Heading>
           </Bobble>
 
           <Text as="p" fontSize={24}>
@@ -70,16 +70,15 @@ const Hero = (): JSX.Element => {
 
       <InView>
         {({ inView, ref }) => (
-          <motion.div
+          <MotionBox
             variants={{
               out: { opacity: 0.15 },
-              in: {
-                opacity: 1
-              }
+              in: { opacity: 1 }
             }}
             initial="out"
             animate={inView && !isScrolled ? 'in' : 'out'}
             transition={{ duration: animDuration }}
+            height="48px"
           >
             <MotionBox
               as={motion.div}
@@ -99,7 +98,7 @@ const Hero = (): JSX.Element => {
             >
               <FaAngleDoubleDown size={48} />
             </MotionBox>
-          </motion.div>
+          </MotionBox>
         )}
       </InView>
     </Flex>

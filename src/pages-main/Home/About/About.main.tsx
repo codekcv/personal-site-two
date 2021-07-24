@@ -6,7 +6,10 @@ import { useInView } from 'react-intersection-observer'
 
 import Bobble from '../../../components/Bobble'
 import Card from '../../../components/Card'
-import { MotionText } from '../../../components/Motion/Motion.main'
+import {
+  MotionBox,
+  MotionHeading
+} from '../../../components/Motion/Motion.main'
 import { animDelay, animDuration, triggerOnce } from '../Home.util'
 import { facts } from './About.util'
 
@@ -52,7 +55,7 @@ const About = (): JSX.Element => {
   const transform = `translate(-128px, calc(${posY * -1}px))`
 
   return (
-    <Box mt="10vh" ref={ref}>
+    <Box mt="2rem" ref={ref}>
       <div ref={posRef}>
         <div style={{ position: 'relative', zIndex: isOpen ? 101 : 1 }}>
           <Bobble>
@@ -68,11 +71,10 @@ const About = (): JSX.Element => {
               transition={{ duration: 0.4 }}
               animate={isOpen ? 'open' : 'close'}
             >
-              <MotionText
-                display="inline"
+              <MotionHeading
+                as="h1"
                 fontSize="4rem"
                 textAlign="center"
-                mt="6rem"
                 textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
                 variants={{
                   out: {
@@ -87,12 +89,12 @@ const About = (): JSX.Element => {
                 ref={titleRef}
               >
                 About
-              </MotionText>
+              </MotionHeading>
             </motion.div>
           </Bobble>
         </div>
 
-        <div style={{ position: 'relative', zIndex: isOpen ? 100 : 0, height }}>
+        <Box position="relative" mt="-1.5rem" zIndex={isOpen ? 100 : 0}>
           <motion.div
             variants={{
               out: {
@@ -109,15 +111,14 @@ const About = (): JSX.Element => {
             initial="out"
             animate={inView ? 'in' : 'out'}
           >
-            <motion.div
+            <MotionBox
+              height={height}
               whileHover={{
                 transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
               }}
             >
               <Card
-                position="absolute"
                 width="100%"
-                mt="-1.5rem"
                 variants={{
                   close: {},
                   open: {
@@ -138,9 +139,9 @@ const About = (): JSX.Element => {
                   and exercises, and take care of my lovely cats.
                 </Text>
               </Card>
-            </motion.div>
+            </MotionBox>
           </motion.div>
-        </div>
+        </Box>
       </div>
     </Box>
   )
