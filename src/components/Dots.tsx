@@ -39,17 +39,15 @@ const dots = ['.', '.', '.'].map((dot, idx) => (
   </MotionBox>
 ))
 
-const Dots = (): JSX.Element => {
-  return (
-    <MotionFlex
-      pointerEvents="none"
-      variants={parentVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {dots}
-    </MotionFlex>
-  )
-}
+const Dots = (): JSX.Element => (
+  <MotionFlex
+    pointerEvents="none"
+    variants={parentVariants}
+    initial="hidden"
+    animate="visible"
+  >
+    {dots}
+  </MotionFlex>
+)
 
 export default Dots

@@ -7,12 +7,10 @@ const menus = ['Home', 'Projects', 'Blogs', 'Contact'].map((menu) => (
   </Box>
 ))
 
-const Header = (): JSX.Element => {
-  return (
-    <Flex width="100%" my="2rem" justifyContent="center" alignItems="center">
-      <Flex as="ul">{menus}</Flex>
-    </Flex>
-  )
-}
+const Header = (): JSX.Element => (
+  <Flex width="100%" my="2rem" justifyContent="center" alignItems="center">
+    <Flex as="ul">{menus}</Flex>
+  </Flex>
+)
 
 export default Header
