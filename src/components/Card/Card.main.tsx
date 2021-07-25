@@ -68,93 +68,116 @@ const Card: React.FC<Props> = (props) => {
   const handleOpen = () => setIsOpen(!isOpen)
 
   return (
-    <MotionBox
-      ref={posRef}
-      position="relative"
-      zIndex={zIndex}
-      variants={{
-        out: {
-          opacity: 0,
-          transform: 'translateY(-3rem)',
-          transition: { duration: animDuration, ease: 'easeOut' }
-        },
-        in: {
-          opacity: 1,
-          transform: 'translateY(0rem)',
-          transition: { duration: animDuration, ease: 'easeOut' }
-        }
-      }}
-      initial="out"
-      animate={props.inView ? 'in' : 'out'}
-      {...styleProps}
-      {...(size && { ...size })}
-    >
+    <>
+      <AnimatePresence>
+        {isOpen && (
+          <MotionBox
+            position="fixed"
+            left={0}
+            top={0}
+            height="100vh"
+            width="100%"
+            backgroundColor="#ADD8E6"
+            zIndex={4}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
+          />
+        )}
+      </AnimatePresence>
+
       <MotionBox
-        whileHover={{
-          transform: isOpen
-            ? 'initial'
-            : `translateY(${isOpen ? '0' : '-0.5'}rem)`
+        ref={posRef}
+        position="relative"
+        zIndex={zIndex}
+        variants={{
+          out: {
+            opacity: 0,
+            transform: 'translateY(-3rem)',
+            transition: { duration: animDuration, ease: 'easeOut' }
+          },
+          in: {
+            opacity: 1,
+            transform: 'translateY(0rem)',
+            transition: { duration: animDuration, ease: 'easeOut' }
+          }
         }}
-        onHoverStart={() => setIsHover(true)}
-        onHoverEnd={() => setIsHover(false)}
+        initial="out"
+        animate={props.inView ? 'in' : 'out'}
+        {...styleProps}
+        {...(size && { ...size })}
       >
         <MotionBox
-          onClick={handleOpen}
-          backgroundColor="white"
-          padding="2rem"
-          cursor="pointer"
-          border="1px dotted rgba(0, 0, 0, 0.1)"
-          borderRadius={12}
-          boxShadow="0 0.75rem 3rem 0em rgba(0, 0, 0, 0.05), 0 0.75rem 0rem 0rem rgba(0, 0, 0, 0.05)"
-          variants={{
-            close: {},
-            open: {
-              transform: `translate(${move.x}px, ${move.y}px)`,
-              width: 1024,
-              height: 'calc(100vh - 64px)'
-            }
+          whileHover={{
+            transform: isOpen
+              ? 'initial'
+              : `translateY(${isOpen ? '0' : '-0.5'}rem)`
           }}
-          animate={isOpen ? 'open' : 'close'}
-          {...(size && { ...size })}
+          onHoverStart={() => setIsHover(true)}
+          onHoverEnd={() => setIsHover(false)}
         >
-          {children}
+          <MotionBox
+            onClick={handleOpen}
+            backgroundColor="white"
+            padding="2rem"
+            cursor="pointer"
+            border="1px dotted rgba(0, 0, 0, 0.1)"
+            borderRadius={12}
+            boxShadow="0 0.75rem 3rem 0em rgba(0, 0, 0, 0.05), 0 0.75rem 0rem 0rem rgba(0, 0, 0, 0.05)"
+            variants={{
+              close: {},
+              open: {
+                transform: `translate(${move.x}px, ${move.y}px)`,
+                width: 1024,
+                height: 'calc(100vh - 64px)'
+              }
+            }}
+            animate={isOpen ? 'open' : 'close'}
+            {...(size && { ...size })}
+          >
+            {children}
 
-          <AnimatePresence>
-            {isHover && !isOpen && (
-              <MotionFlex
-                justifyContent="center"
-                alignItems="center"
-                position="absolute"
-                top={0}
-                left={0}
-                w="100%"
-                h="100%"
-                margin="auto"
-                pointerEvents="none"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <Box
+            <AnimatePresence>
+              {isHover && !isOpen && (
+                <MotionFlex
+                  justifyContent="center"
+                  alignItems="center"
                   position="absolute"
                   top={0}
                   left={0}
-                  w="inherit"
-                  h="inherit"
-                  backgroundColor="#ADD8E6"
-                  opacity={0.4}
-                  borderRadius={12}
-                />
+                  w="100%"
+                  h="100%"
+                  margin="auto"
+                  pointerEvents="none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    w="inherit"
+                    h="inherit"
+                    backgroundColor="#ADD8E6"
+                    opacity={0.4}
+                    borderRadius={12}
+                  />
 
-                <Text as="h1" fontSize="6rem" transform="translateY(-2.35rem)">
-                  ...
-                </Text>
-              </MotionFlex>
-            )}
-          </AnimatePresence>
+                  <Text
+                    as="h1"
+                    fontSize="6rem"
+                    transform="translateY(-2.35rem)"
+                  >
+                    ...
+                  </Text>
+                </MotionFlex>
+              )}
+            </AnimatePresence>
+          </MotionBox>
         </MotionBox>
       </MotionBox>
-    </MotionBox>
+    </>
   )
 }
 
