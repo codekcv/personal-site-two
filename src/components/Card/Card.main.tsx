@@ -51,6 +51,7 @@ const Card: React.FC<Props> = (props) => {
   const { isOpen, setIsOpen, children } = props
   const posRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState<SizeProps>(null)
+  const [move, setMove] = useState({ x: 0, y: 0 })
 
   const styleProps: Partial<Props> = { ...props }
   delete styleProps.inView
@@ -58,9 +59,16 @@ const Card: React.FC<Props> = (props) => {
   delete styleProps.setIsOpen
 
   useEffect(() => {
-    if (isOpen && window) {
+    if (isOpen) {
       document.body.style.height = '100%'
       document.body.style.overflowY = 'hidden'
+
+      const currX = posRef?.current?.getBoundingClientRect().x ?? 0
+      const targX = window.innerWidth / 2 - 384 - 128
+      const diffX = targX - currX
+      const posY = (posRef?.current?.getBoundingClientRect().y ?? 0) - 32
+
+      setMove({ x: diffX, y: posY * -1 })
     } else {
       document.body.style.height = 'initial'
       document.body.style.overflowY = 'initial'
@@ -77,9 +85,6 @@ const Card: React.FC<Props> = (props) => {
   }, [])
 
   const handleOpen = () => setIsOpen(!isOpen)
-
-  const posY = (posRef?.current?.getBoundingClientRect().y ?? 0) - 32
-  const transform = `translate(-128px, calc(${posY * -1}px))`
 
   return (
     <MotionBox
@@ -100,7 +105,7 @@ const Card: React.FC<Props> = (props) => {
           variants={{
             close: {},
             open: {
-              transform,
+              transform: `translate(${move.x}px, ${move.y}px)`,
               width: 1024,
               height: 'calc(100vh - 64px)'
             }
