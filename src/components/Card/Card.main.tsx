@@ -11,19 +11,6 @@ import React, {
 import { animDuration } from '../../pages-main/Home/Home.util'
 import { MotionBox, MotionFlex } from '../Motion/Motion.main'
 
-const inViewVariants = {
-  out: {
-    opacity: 0,
-    transform: 'translateY(-3rem)',
-    transition: { duration: animDuration, ease: 'easeOut' }
-  },
-  in: {
-    opacity: 1,
-    transform: 'translateY(0rem)',
-    transition: { duration: animDuration, ease: 'easeOut' }
-  }
-}
-
 type Props = BoxProps & {
   inView?: boolean
   isOpen: boolean
@@ -49,7 +36,7 @@ const Card: React.FC<Props> = (props) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.height = '100%'
-      document.body.style.overflowY = 'hidden'
+      document.body.style.overflow = 'hidden'
 
       const currX = posRef?.current?.getBoundingClientRect().x ?? 0
       const targX = window.innerWidth / 2 - 384 - 128
@@ -59,8 +46,9 @@ const Card: React.FC<Props> = (props) => {
       setMove({ x: diffX, y: posY * -1 })
       setZIndex(100)
     } else {
+      console.log('What the fuck')
       document.body.style.height = 'initial'
-      document.body.style.overflowY = 'initial'
+      document.body.style.overflow = 'initial'
 
       setTimeout(() => {
         setZIndex(0)
@@ -84,7 +72,18 @@ const Card: React.FC<Props> = (props) => {
       ref={posRef}
       position="relative"
       zIndex={zIndex}
-      variants={inViewVariants}
+      variants={{
+        out: {
+          opacity: 0,
+          transform: 'translateY(-3rem)',
+          transition: { duration: animDuration, ease: 'easeOut' }
+        },
+        in: {
+          opacity: 1,
+          transform: 'translateY(0rem)',
+          transition: { duration: animDuration, ease: 'easeOut' }
+        }
+      }}
       initial="out"
       animate={props.inView ? 'in' : 'out'}
       {...styleProps}
