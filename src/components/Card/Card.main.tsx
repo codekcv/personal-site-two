@@ -31,10 +31,16 @@ type Props = BoxProps & {
   setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-const Card: React.FC<Props> = ({ isOpen, setIsOpen, children }) => {
+const Card: React.FC<Props> = (props) => {
+  const { isOpen, setIsOpen, children } = props
   const [height, setHeight] = useState(0)
   const posRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
+  const styleProps: Partial<Props> = { ...props }
+
+  delete styleProps.inView
+  delete styleProps.isOpen
+  delete styleProps.setIsOpen
 
   useEffect(() => {
     if (isOpen && window) {
@@ -58,30 +64,30 @@ const Card: React.FC<Props> = ({ isOpen, setIsOpen, children }) => {
   const transform = `translate(-128px, calc(${posY * -1}px))`
 
   return (
-    <div ref={posRef}>
-      <MotionBox
-        height={height}
-        whileHover={{
-          transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
+    <MotionBox
+      ref={posRef}
+      height={height}
+      whileHover={{
+        transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
+      }}
+      {...styleProps}
+    >
+      <CardContainer
+        ref={cardRef}
+        variants={{
+          close: {},
+          open: {
+            transform,
+            width: 1024,
+            height: 'calc(100vh - 64px)'
+          }
         }}
+        animate={isOpen ? 'open' : 'close'}
+        onClick={handleOpen}
       >
-        <CardContainer
-          ref={cardRef}
-          variants={{
-            close: {},
-            open: {
-              transform,
-              width: 1024,
-              height: 'calc(100vh - 64px)'
-            }
-          }}
-          animate={isOpen ? 'open' : 'close'}
-          onClick={handleOpen}
-        >
-          {children}
-        </CardContainer>
-      </MotionBox>
-    </div>
+        {children}
+      </CardContainer>
+    </MotionBox>
   )
 }
 
