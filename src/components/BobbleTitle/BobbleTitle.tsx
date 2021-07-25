@@ -19,6 +19,7 @@ const inOutVariants = {
 }
 
 const BobbleTitle: React.FC<Props> = ({ inView, isOpen, children }) => {
+  const [zIndex, setZIndex] = useState(1)
   const [titleY, setTitleY] = useState(0)
   const titleRef = useRef<HTMLElement>(null)
 
@@ -26,11 +27,16 @@ const BobbleTitle: React.FC<Props> = ({ inView, isOpen, children }) => {
     if (isOpen) {
       const titlePosY = titleRef?.current?.getBoundingClientRect().y ?? 0
       setTitleY(titlePosY - (window.innerHeight / 2 - 64))
+      setZIndex(101)
+    } else {
+      setTimeout(() => {
+        setZIndex(1)
+      }, 400)
     }
   }, [isOpen])
 
   return (
-    <Bobble position="relative" zIndex={isOpen ? 101 : 1}>
+    <Bobble position="relative" zIndex={zIndex}>
       <motion.div
         variants={{
           close: {},

@@ -52,7 +52,7 @@ const Card: React.FC<Props> = (props) => {
 
       setTimeout(() => {
         setZIndex(0)
-      }, 500)
+      }, 400)
     }
   }, [isOpen])
 
@@ -168,6 +168,7 @@ const Card: React.FC<Props> = (props) => {
                     as="h1"
                     fontSize="6rem"
                     transform="translateY(-2.35rem)"
+                    pointerEvents="none"
                   >
                     ...
                   </Text>
