@@ -1,7 +1,8 @@
-import { Box, BoxProps, Text } from '@chakra-ui/react'
+import { Box, BoxProps } from '@chakra-ui/react'
 import { AnimatePresence } from 'framer-motion'
 import React, {
   Dispatch,
+  ReactNode,
   SetStateAction,
   useEffect,
   useRef,
@@ -9,12 +10,15 @@ import React, {
 } from 'react'
 
 import { animDuration } from '../../pages-main/Home/Home.util'
+import Dots from '../Dots/Dots'
 import { MotionBox, MotionFlex } from '../Motion/Motion.main'
 
 type Props = BoxProps & {
   inView?: boolean
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
+  contentPrev: ReactNode
+  contentFull: ReactNode
   log?: string
 }
 
@@ -22,7 +26,7 @@ type SizeProps = null | { width: number; height: number }
 
 const Card: React.FC<Props> = (props) => {
   const styleProps: Partial<Props> = { ...props }
-  const { isOpen, setIsOpen, children } = props
+  const { isOpen, setIsOpen, contentPrev, contentFull } = props
   const [size, setSize] = useState<SizeProps>(null)
   const [move, setMove] = useState({ x: 0, y: 0 })
   const [zIndex, setZIndex] = useState(0)
@@ -133,7 +137,32 @@ const Card: React.FC<Props> = (props) => {
             animate={isOpen ? 'open' : 'close'}
             {...(size && { ...size })}
           >
-            {children}
+            <AnimatePresence exitBeforeEnter>
+              {isOpen ? (
+                <MotionBox
+                  key="full"
+                  overflow="hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Box width="1024px" pr="2rem">
+                    {contentFull}
+                  </Box>
+                </MotionBox>
+              ) : (
+                <MotionFlex
+                  key="prev"
+                  justifyContent="center"
+                  alignItems="center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Box {...(size && { ...size })}>{contentPrev}</Box>
+                </MotionFlex>
+              )}
+            </AnimatePresence>
 
             <AnimatePresence>
               {isHover && !isOpen && (
@@ -162,14 +191,7 @@ const Card: React.FC<Props> = (props) => {
                     borderRadius={12}
                   />
 
-                  <Text
-                    as="h1"
-                    fontSize="6rem"
-                    transform="translateY(-2.35rem)"
-                    pointerEvents="none"
-                  >
-                    ...
-                  </Text>
+                  <Dots />
                 </MotionFlex>
               )}
             </AnimatePresence>
