@@ -23,7 +23,7 @@ const About = (): JSX.Element => {
         About
       </BobbleTitle>
 
-      <Card inView={inView} isOpen={isOpen} setIsOpen={setIsOpen}>
+      <Card inView={inView} isOpen={isOpen} setIsOpen={setIsOpen} mt="-1.5rem">
         <Box as="ul">{facts}</Box>
 
         <Text mt="2rem">

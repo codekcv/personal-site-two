@@ -23,7 +23,7 @@ const Stack = (): JSX.Element => {
         Technology Stack
       </BobbleTitle>
 
-      <Flex justifyContent="center">
+      <Flex justifyContent="center" mt="-1.5rem">
         <Card
           inView={inView}
           isOpen={isOpenBE}

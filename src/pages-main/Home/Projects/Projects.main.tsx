@@ -22,7 +22,7 @@ const Projects = (): JSX.Element => {
         Project
       </BobbleTitle>
 
-      <Card inView={inView} isOpen={isOpen} setIsOpen={setIsOpen}>
+      <Card inView={inView} isOpen={isOpen} setIsOpen={setIsOpen} mt="-1.5rem">
         {projects}
       </Card>
     </Box>
