@@ -1,12 +1,12 @@
 import React from 'react'
 
 import Layout from '../components/Layout'
-import About from '../pages-main/Home/About'
-import Hero from '../pages-main/Home/Hero'
-import Projects from '../pages-main/Home/Projects'
-import Stack from '../pages-main/Home/Stack'
+import About from '../pages-main/index/About'
+import Hero from '../pages-main/index/Hero'
+import Projects from '../pages-main/index/Projects'
+import Stack from '../pages-main/index/Stack'
 
-const Home = (): JSX.Element => (
+const Index = (): JSX.Element => (
   <Layout>
     <Hero />
     <About />
@@ -15,4 +15,4 @@ const Home = (): JSX.Element => (
   </Layout>
 )
 
-export default Home
+export default Index

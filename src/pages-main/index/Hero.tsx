@@ -17,7 +17,7 @@ import Bobble from '../../components/Bobble'
 import { MotionBox, MotionFlex } from '../../components/Motion'
 import { animDuration } from '../../utils/constants'
 
-export const contacts = [
+const contacts = [
   {
     name: 'GitHub',
     icon: <AiOutlineGithub size={48} />,
