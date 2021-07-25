@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import BobbleTitle from '../../../components/BobbleTitle'
-import { CardInView } from '../../../components/Card/Card.main'
+import Card from '../../../components/Card/Card.main'
 import { animDelay, triggerOnce } from '../Home.util'
 import { facts } from './About.util'
 
@@ -23,7 +23,7 @@ const About = (): JSX.Element => {
         About
       </BobbleTitle>
 
-      <CardInView inView={inView} isOpen={isOpen} setIsOpen={setIsOpen}>
+      <Card inView={inView} isOpen={isOpen} setIsOpen={setIsOpen}>
         <Box as="ul">{facts}</Box>
 
         <Text mt="2rem">
@@ -31,7 +31,7 @@ const About = (): JSX.Element => {
           piano, read light fantasy novels, do some stretching and exercises,
           and take care of my lovely cats.
         </Text>
-      </CardInView>
+      </Card>
     </Box>
   )
 }

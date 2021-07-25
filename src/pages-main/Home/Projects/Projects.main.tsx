@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import BobbleTitle from '../../../components/BobbleTitle'
-import { CardInView } from '../../../components/Card/Card.main'
+import Card from '../../../components/Card/Card.main'
 import { animDelay, triggerOnce } from '../Home.util'
 import { projects } from './Projects.util'
 
@@ -22,9 +22,9 @@ const Projects = (): JSX.Element => {
         Project
       </BobbleTitle>
 
-      <CardInView inView={inView} isOpen={isOpen} setIsOpen={setIsOpen}>
+      <Card inView={inView} isOpen={isOpen} setIsOpen={setIsOpen}>
         {projects}
-      </CardInView>
+      </Card>
     </Box>
   )
 }

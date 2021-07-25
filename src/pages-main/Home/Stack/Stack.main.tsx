@@ -24,7 +24,13 @@ const Stack = (): JSX.Element => {
       </BobbleTitle>
 
       <Flex justifyContent="center">
-        <Card isOpen={isOpenBE} setIsOpen={setIsOpenBE} w="100%" mr="2rem">
+        <Card
+          inView={inView}
+          isOpen={isOpenBE}
+          setIsOpen={setIsOpenBE}
+          w="100%"
+          mr="2rem"
+        >
           <Text textAlign="center">Back-End</Text>
 
           <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
@@ -32,7 +38,13 @@ const Stack = (): JSX.Element => {
           </Flex>
         </Card>
 
-        <Card isOpen={isOpenFE} setIsOpen={setIsOpenFE} w="100%" ml="2rem">
+        <Card
+          inView={inView}
+          isOpen={isOpenFE}
+          setIsOpen={setIsOpenFE}
+          w="100%"
+          ml="2rem"
+        >
           <Text textAlign="center">Front-End</Text>
 
           <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">

@@ -25,6 +25,19 @@ const CardContainer = styled(MotionBox)<{
     0 0.75rem 0rem 0rem rgba(0, 0, 0, 0.05);
 `)
 
+const inViewVariants = {
+  out: {
+    opacity: 0,
+    transform: 'translateY(-3rem)',
+    transition: { duration: animDuration, ease: 'easeOut' }
+  },
+  in: {
+    opacity: 1,
+    transform: 'translateY(0rem)',
+    transition: { duration: animDuration, ease: 'easeOut' }
+  }
+}
+
 type Props = BoxProps & {
   inView?: boolean
   isOpen: boolean
@@ -71,52 +84,35 @@ const Card: React.FC<Props> = (props) => {
   return (
     <MotionBox
       ref={posRef}
-      whileHover={{
-        transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
-      }}
+      variants={inViewVariants}
+      initial="out"
+      animate={props.inView ? 'in' : 'out'}
       {...styleProps}
       {...(size && { ...size })}
     >
-      <CardContainer
-        onClick={handleOpen}
-        variants={{
-          close: {},
-          open: {
-            transform,
-            width: 1024,
-            height: 'calc(100vh - 64px)'
-          }
+      <motion.div
+        whileHover={{
+          transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
         }}
-        animate={isOpen ? 'open' : 'close'}
-        {...(size && { ...size })}
       >
-        {children}
-      </CardContainer>
+        <CardContainer
+          onClick={handleOpen}
+          variants={{
+            close: {},
+            open: {
+              transform,
+              width: 1024,
+              height: 'calc(100vh - 64px)'
+            }
+          }}
+          animate={isOpen ? 'open' : 'close'}
+          {...(size && { ...size })}
+        >
+          {children}
+        </CardContainer>
+      </motion.div>
     </MotionBox>
   )
 }
-
-const inViewVariants = {
-  out: {
-    opacity: 0,
-    transform: 'translateY(-3rem)',
-    transition: { duration: animDuration, ease: 'easeOut' }
-  },
-  in: {
-    opacity: 1,
-    transform: 'translateY(0rem)',
-    transition: { duration: animDuration, ease: 'easeOut' }
-  }
-}
-
-export const CardInView: React.FC<Props> = (props) => (
-  <motion.div
-    variants={inViewVariants}
-    initial="out"
-    animate={props.inView ? 'in' : 'out'}
-  >
-    <Card {...props} />
-  </motion.div>
-)
 
 export default Card
