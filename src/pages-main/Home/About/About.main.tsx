@@ -10,6 +10,7 @@ import { facts } from './About.util'
 
 const About = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
+
   const { ref, inView } = useInView({
     threshold: 0.5,
     delay: animDelay,

@@ -9,6 +9,7 @@ import { projects } from './Projects.util'
 
 const Projects = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false)
+
   const { ref, inView } = useInView({
     threshold: 0.7,
     delay: animDelay,

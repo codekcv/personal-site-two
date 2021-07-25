@@ -10,6 +10,7 @@ import { backEndTechnologies, frontEndTechnologies } from './Stack.util'
 const Stack = (): JSX.Element => {
   const [isOpenBE, setIsOpenBE] = useState(false)
   const [isOpenFE, setIsOpenFE] = useState(false)
+
   const { ref, inView } = useInView({
     threshold: 0.5,
     delay: animDelay,
@@ -23,32 +24,16 @@ const Stack = (): JSX.Element => {
       </BobbleTitle>
 
       <Flex justifyContent="center">
-        <Card
-          isOpen={isOpenBE}
-          setIsOpen={setIsOpenBE}
-          w="50%"
-          mr="2rem"
-          alignSelf="stretch"
-        >
-          <Text as="h2" textAlign="center">
-            Back-End
-          </Text>
+        <Card isOpen={isOpenBE} setIsOpen={setIsOpenBE} w="100%" mr="2rem">
+          <Text textAlign="center">Back-End</Text>
 
           <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
             {backEndTechnologies}
           </Flex>
         </Card>
 
-        <Card
-          isOpen={isOpenFE}
-          setIsOpen={setIsOpenFE}
-          w="50%"
-          ml="2rem"
-          alignSelf="stretch"
-        >
-          <Text as="h2" textAlign="center">
-            Front-End
-          </Text>
+        <Card isOpen={isOpenFE} setIsOpen={setIsOpenFE} w="100%" ml="2rem">
+          <Text textAlign="center">Front-End</Text>
 
           <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
             {frontEndTechnologies}
