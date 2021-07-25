@@ -8,6 +8,7 @@ import { bobbingRange, maxVary, minVary } from './Bobble.util'
 const Bobble: React.FC<BoxProps> = (props) => {
   const { children } = props
   const passedProps = { ...props }
+
   delete passedProps.children
 
   return (

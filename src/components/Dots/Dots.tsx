@@ -12,11 +12,7 @@ const parentVariants = {
       repeat: Infinity
     }
   },
-  hidden: {
-    // transition: {
-    //   when: 'beforeChildren'
-    // }
-  }
+  hidden: {}
 }
 
 const childVariants = {
@@ -45,7 +41,12 @@ const dots = ['.', '.', '.'].map((dot, idx) => (
 
 const Dots = (): JSX.Element => {
   return (
-    <MotionFlex variants={parentVariants} initial="hidden" animate="visible">
+    <MotionFlex
+      pointerEvents="none"
+      variants={parentVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {dots}
     </MotionFlex>
   )
