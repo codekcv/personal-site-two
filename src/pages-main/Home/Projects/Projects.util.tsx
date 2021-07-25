@@ -1,8 +1,7 @@
 /* eslint-disable react/display-name */
+import { Box } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
-
-import Card from '../../../components/Card'
 
 export const projects = [
   {
@@ -19,4 +18,4 @@ export const projects = [
       />
     )
   }
-].map((item) => <Card key={item.title}>{item.img}</Card>)
+].map((item) => <Box key={item.title}>{item.img}</Box>)
