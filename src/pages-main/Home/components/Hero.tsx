@@ -2,13 +2,75 @@ import { Flex, Heading, Text } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { StaticImage } from 'gatsby-plugin-image'
 import React, { useEffect, useState } from 'react'
-import { FaAngleDoubleDown } from 'react-icons/fa'
+import {
+  AiFillLinkedin,
+  AiFillYoutube,
+  AiOutlineCodepen,
+  AiOutlineGithub,
+  AiOutlineTwitter
+} from 'react-icons/ai'
+import { FaAngleDoubleDown, FaDev, FaFreeCodeCamp } from 'react-icons/fa'
+import { IoIosMail } from 'react-icons/io'
 import { InView } from 'react-intersection-observer'
 
 import Bobble from '../../../components/Bobble'
 import { MotionBox, MotionFlex } from '../../../components/Motion/Motion.main'
 import { animDuration } from '../Home.util'
-import { contacts } from './Hero.util'
+
+export const contacts = [
+  {
+    name: 'GitHub',
+    icon: <AiOutlineGithub size={48} />,
+    link: 'http://github.com/codekcv'
+  },
+  {
+    name: 'Twitter',
+    icon: <AiOutlineTwitter size={48} />,
+    link: 'https://twitter.com/codekcv'
+  },
+  {
+    name: 'DEV',
+    icon: <FaDev size={48} />,
+    link: 'https://dev.to/codekcv'
+  },
+  {
+    name: 'CodePen',
+    icon: <AiOutlineCodepen size={48} />,
+    link: 'https://codepen.io/codekcv'
+  },
+  {
+    name: 'freeCodeCamp',
+    icon: <FaFreeCodeCamp size={48} />,
+    link: 'https://www.freecodecamp.org/codekcv'
+  },
+  {
+    name: 'YouTube',
+    icon: <AiFillYoutube size={48} />,
+    link: 'https://www.youtube.com/channel/UC9NkngOuNAcPGfx4Nl3ODgg'
+  },
+  {
+    name: 'LinkedIn',
+    icon: <AiFillLinkedin size={48} />,
+    link: 'https://www.linkedin.com/in/codekcv/'
+  },
+  {
+    name: 'Email',
+    icon: <IoIosMail size={48} />,
+    link: 'mailto:ChristianVillamin31@gmail.com'
+  }
+].map((item) => (
+  <MotionBox
+    as={motion.div}
+    key={item.name}
+    mx="1rem"
+    mt="1.5rem"
+    whileHover={{ scale: 1.2 }}
+  >
+    <a href={item.link} target="_blank" rel="noopener noreferrer">
+      {item.icon}
+    </a>
+  </MotionBox>
+))
 
 const Hero = (): JSX.Element => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -46,7 +108,8 @@ const Hero = (): JSX.Element => {
             alt="Christian Villamin's photo."
             style={{
               borderRadius: '50%',
-              boxShadow: '0 0 10px 10px rgba(0, 0, 0, 0.05)'
+              boxShadow: '0 0 10px 10px rgba(0, 0, 0, 0.05)',
+              pointerEvents: 'none'
             }}
           />
 
@@ -77,7 +140,6 @@ const Hero = (): JSX.Element => {
             }}
             initial="out"
             animate={inView && !isScrolled ? 'in' : 'out'}
-            transition={{ duration: animDuration }}
             height="48px"
           >
             <MotionBox

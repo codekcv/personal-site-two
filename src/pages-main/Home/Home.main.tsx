@@ -1,10 +1,10 @@
 import React from 'react'
 
 import Layout from '../../components/Layout'
-import About from './About'
-import Hero from './Hero'
-import Projects from './Projects'
-import Stack from './Stack'
+import About from './components/About'
+import Hero from './components/Hero'
+import Projects from './components/Projects'
+import Stack from './components/Stack'
 
 const Home = (): JSX.Element => (
   <Layout>
