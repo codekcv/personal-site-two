@@ -1,4 +1,4 @@
-import { BoxProps } from '@chakra-ui/react'
+import { Box, BoxProps } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import React, {
@@ -29,15 +29,17 @@ type Props = BoxProps & {
   inView?: boolean
   isOpen: boolean
   setIsOpen: Dispatch<SetStateAction<boolean>>
+  log?: string
 }
+
+type SizeProps = null | { width: number; height: number }
 
 const Card: React.FC<Props> = (props) => {
   const { isOpen, setIsOpen, children } = props
-  const [height, setHeight] = useState(0)
   const posRef = useRef<HTMLDivElement>(null)
-  const cardRef = useRef<HTMLDivElement>(null)
-  const styleProps: Partial<Props> = { ...props }
+  const [size, setSize] = useState<SizeProps>(null)
 
+  const styleProps: Partial<Props> = { ...props }
   delete styleProps.inView
   delete styleProps.isOpen
   delete styleProps.setIsOpen
@@ -53,8 +55,11 @@ const Card: React.FC<Props> = (props) => {
   }, [isOpen])
 
   useEffect(() => {
-    if (cardRef?.current) {
-      setHeight(cardRef.current.getBoundingClientRect().height)
+    if (posRef?.current) {
+      setSize({
+        width: posRef.current.getBoundingClientRect().width,
+        height: posRef.current.getBoundingClientRect().height
+      })
     }
   }, [])
 
@@ -66,14 +71,14 @@ const Card: React.FC<Props> = (props) => {
   return (
     <MotionBox
       ref={posRef}
-      height={height}
       whileHover={{
         transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
       }}
       {...styleProps}
+      {...(size && { ...size })}
     >
       <CardContainer
-        ref={cardRef}
+        onClick={handleOpen}
         variants={{
           close: {},
           open: {
@@ -83,7 +88,7 @@ const Card: React.FC<Props> = (props) => {
           }
         }}
         animate={isOpen ? 'open' : 'close'}
-        onClick={handleOpen}
+        {...(size && { ...size })}
       >
         {children}
       </CardContainer>
