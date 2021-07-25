@@ -9,9 +9,9 @@ import React, {
   useState
 } from 'react'
 
-import { animDuration } from '../../pages-main/Home/Home.util'
-import Dots from '../Dots/Dots'
-import { MotionBox, MotionFlex } from '../Motion/Motion.main'
+import { animDuration } from '../utils/constants'
+import Dots from './Dots'
+import { MotionBox, MotionFlex } from './Motion'
 
 type Props = BoxProps & {
   inView?: boolean

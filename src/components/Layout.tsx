@@ -1,8 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
 
-import Footer from './Footer/Footer.main'
-import Header from './Header/Header.main'
+import Footer from './Footer'
+import Header from './Header'
 
 const Layout: React.FC = ({ children }) => (
   <Flex

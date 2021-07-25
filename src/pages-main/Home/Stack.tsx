@@ -2,9 +2,9 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import BobbleTitle from '../../../components/BobbleTitle'
-import Card from '../../../components/Card'
-import { animDelay, triggerOnce } from '../Home.util'
+import BobbleTitle from '../../components/BobbleTitle'
+import Card from '../../components/Card'
+import { animDelay, triggerOnce } from '../../utils/constants'
 
 export const frontEndTechnologies = [
   'TypeScript',

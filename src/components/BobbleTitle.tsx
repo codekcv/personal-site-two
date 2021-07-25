@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import React, { useEffect, useRef, useState } from 'react'
 
-import { animDuration } from '../../pages-main/Home/Home.util'
-import Bobble from '../Bobble/Bobble.main'
-import { MotionHeading } from '../Motion/Motion.main'
+import { animDuration } from '../utils/constants'
+import Bobble from './Bobble'
+import { MotionHeading } from './Motion'
 
 type Props = {
   inView: boolean

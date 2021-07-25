@@ -13,9 +13,9 @@ import { FaAngleDoubleDown, FaDev, FaFreeCodeCamp } from 'react-icons/fa'
 import { IoIosMail } from 'react-icons/io'
 import { InView } from 'react-intersection-observer'
 
-import Bobble from '../../../components/Bobble'
-import { MotionBox, MotionFlex } from '../../../components/Motion/Motion.main'
-import { animDuration } from '../Home.util'
+import Bobble from '../../components/Bobble'
+import { MotionBox, MotionFlex } from '../../components/Motion'
+import { animDuration } from '../../utils/constants'
 
 export const contacts = [
   {

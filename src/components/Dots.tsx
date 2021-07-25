@@ -1,8 +1,8 @@
 import { Text } from '@chakra-ui/react'
 import React from 'react'
 
-import Bobble from '../Bobble'
-import { MotionBox, MotionFlex, MotionText } from '../Motion/Motion.main'
+import Bobble from './Bobble'
+import { MotionBox, MotionFlex } from './Motion'
 
 const parentVariants = {
   visible: {

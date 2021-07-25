@@ -2,8 +2,29 @@ import { BoxProps } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import React from 'react'
 
-import { MotionFlex } from '../Motion/Motion.main'
-import { bobbingRange, maxVary, minVary } from './Bobble.util'
+import { MotionFlex } from './Motion'
+
+const bobbingRange = {
+  x: {
+    transform: [
+      'translateX(0.25rem)',
+      'translateX(0rem)',
+      'translateX(0.25rem)'
+    ],
+    duration: 3
+  },
+  y: {
+    transform: [
+      'translateY(0.25rem)',
+      'translateY(0rem)',
+      'translateY(0.25rem)'
+    ],
+    duration: Math.PI / Math.E
+  }
+}
+
+const minVary = 0.85
+const maxVary = 1.15
 
 const Bobble: React.FC<BoxProps> = (props) => {
   const { children } = props

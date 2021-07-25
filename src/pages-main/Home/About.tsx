@@ -3,9 +3,9 @@ import { Heading, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import BobbleTitle from '../../../components/BobbleTitle'
-import Card from '../../../components/Card/Card.main'
-import { animDelay, triggerOnce } from '../Home.util'
+import BobbleTitle from '../../components/BobbleTitle'
+import Card from '../../components/Card'
+import { animDelay, triggerOnce } from '../../utils/constants'
 
 const facts = [
   'My name is Christian Villamin; I live in Manila, Philippines.',
