@@ -14,7 +14,8 @@ const theme = {
         scrollbarWidth: 'none',
         '::-webkit-scrollbar': {
           display: 'none'
-        }
+        },
+        overflowX: 'hidden'
       },
       a: {
         color: 'inherit',
