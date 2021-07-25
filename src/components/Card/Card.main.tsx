@@ -21,14 +21,14 @@ type Props = BoxProps & {
 type SizeProps = null | { width: number; height: number }
 
 const Card: React.FC<Props> = (props) => {
+  const styleProps: Partial<Props> = { ...props }
   const { isOpen, setIsOpen, children } = props
-  const posRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState<SizeProps>(null)
   const [move, setMove] = useState({ x: 0, y: 0 })
   const [zIndex, setZIndex] = useState(0)
   const [isHover, setIsHover] = useState(false)
+  const posRef = useRef<HTMLDivElement>(null)
 
-  const styleProps: Partial<Props> = { ...props }
   delete styleProps.inView
   delete styleProps.isOpen
   delete styleProps.setIsOpen
@@ -38,15 +38,13 @@ const Card: React.FC<Props> = (props) => {
       document.body.style.height = '100%'
       document.body.style.overflow = 'hidden'
 
-      const currX = posRef?.current?.getBoundingClientRect().x ?? 0
       const targX = window.innerWidth / 2 - 384 - 128
-      const diffX = targX - currX
+      const currX = posRef?.current?.getBoundingClientRect().x ?? 0
       const posY = (posRef?.current?.getBoundingClientRect().y ?? 0) - 32
 
-      setMove({ x: diffX, y: posY * -1 })
+      setMove({ x: targX - currX, y: posY * -1 })
       setZIndex(100)
     } else {
-      console.log('What the fuck')
       document.body.style.height = 'initial'
       document.body.style.overflow = 'initial'
 
