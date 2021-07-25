@@ -121,11 +121,12 @@ const Card: React.FC<Props> = (props) => {
           <MotionBox
             onClick={handleOpen}
             backgroundColor="white"
-            padding="2rem"
             cursor="pointer"
             border="1px dotted rgba(0, 0, 0, 0.1)"
             borderRadius={12}
             boxShadow="0 0.75rem 3rem 0em rgba(0, 0, 0, 0.05), 0 0.75rem 0rem 0rem rgba(0, 0, 0, 0.05)"
+            overflow="hidden"
+            p="2rem"
             variants={{
               close: {},
               open: {
@@ -135,32 +136,31 @@ const Card: React.FC<Props> = (props) => {
               }
             }}
             animate={isOpen ? 'open' : 'close'}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
             {...(size && { ...size })}
           >
+            <MotionFlex
+              key="prev"
+              justifyContent="center"
+              alignItems="center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Box {...(size && { ...size })}>{contentPrev}</Box>
+            </MotionFlex>
+
             <AnimatePresence exitBeforeEnter>
-              {isOpen ? (
+              {isOpen && (
                 <MotionBox
-                  key="full"
-                  overflow="hidden"
+                  mt="-2rem"
+                  w="calc(1024px - 2rem)"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  <Box width="1024px" pr="2rem">
-                    {contentFull}
-                  </Box>
+                  <Box>{contentFull}</Box>
                 </MotionBox>
-              ) : (
-                <MotionFlex
-                  key="prev"
-                  justifyContent="center"
-                  alignItems="center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <Box {...(size && { ...size })}>{contentPrev}</Box>
-                </MotionFlex>
               )}
             </AnimatePresence>
 
