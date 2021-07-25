@@ -1,9 +1,7 @@
-import { Box, BoxProps } from '@chakra-ui/react'
-import styled from '@emotion/styled'
-import { motion } from 'framer-motion'
+import { Box, BoxProps, Text } from '@chakra-ui/react'
+import { AnimatePresence } from 'framer-motion'
 import React, {
   Dispatch,
-  RefObject,
   SetStateAction,
   useEffect,
   useRef,
@@ -11,19 +9,7 @@ import React, {
 } from 'react'
 
 import { animDuration } from '../../pages-main/Home/Home.util'
-import { MotionBox } from '../Motion/Motion.main'
-
-const CardContainer = styled(MotionBox)<{
-  ref?: RefObject<HTMLElement>
-}>(`
-  background-color: white;
-  padding: 2rem;
-  cursor: pointer;
-  border: 1px dotted rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  box-shadow: 0 0.75rem 3rem 0em rgba(0, 0, 0, 0.05),
-    0 0.75rem 0rem 0rem rgba(0, 0, 0, 0.05);
-`)
+import { MotionBox, MotionFlex } from '../Motion/Motion.main'
 
 const inViewVariants = {
   out: {
@@ -52,6 +38,8 @@ const Card: React.FC<Props> = (props) => {
   const posRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState<SizeProps>(null)
   const [move, setMove] = useState({ x: 0, y: 0 })
+  const [zIndex, setZIndex] = useState(0)
+  const [isHover, setIsHover] = useState(false)
 
   const styleProps: Partial<Props> = { ...props }
   delete styleProps.inView
@@ -69,9 +57,14 @@ const Card: React.FC<Props> = (props) => {
       const posY = (posRef?.current?.getBoundingClientRect().y ?? 0) - 32
 
       setMove({ x: diffX, y: posY * -1 })
+      setZIndex(100)
     } else {
       document.body.style.height = 'initial'
       document.body.style.overflowY = 'initial'
+
+      setTimeout(() => {
+        setZIndex(0)
+      }, 500)
     }
   }, [isOpen])
 
@@ -89,19 +82,31 @@ const Card: React.FC<Props> = (props) => {
   return (
     <MotionBox
       ref={posRef}
+      position="relative"
+      zIndex={zIndex}
       variants={inViewVariants}
       initial="out"
       animate={props.inView ? 'in' : 'out'}
       {...styleProps}
       {...(size && { ...size })}
     >
-      <motion.div
+      <MotionBox
         whileHover={{
-          transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
+          transform: isOpen
+            ? 'initial'
+            : `translateY(${isOpen ? '0' : '-0.5'}rem)`
         }}
+        onHoverStart={() => setIsHover(true)}
+        onHoverEnd={() => setIsHover(false)}
       >
-        <CardContainer
+        <MotionBox
           onClick={handleOpen}
+          backgroundColor="white"
+          padding="2rem"
+          cursor="pointer"
+          border="1px dotted rgba(0, 0, 0, 0.1)"
+          borderRadius={12}
+          boxShadow="0 0.75rem 3rem 0em rgba(0, 0, 0, 0.05), 0 0.75rem 0rem 0rem rgba(0, 0, 0, 0.05)"
           variants={{
             close: {},
             open: {
@@ -114,8 +119,42 @@ const Card: React.FC<Props> = (props) => {
           {...(size && { ...size })}
         >
           {children}
-        </CardContainer>
-      </motion.div>
+
+          <AnimatePresence>
+            {isHover && !isOpen && (
+              <MotionFlex
+                justifyContent="center"
+                alignItems="center"
+                position="absolute"
+                top={0}
+                left={0}
+                w="100%"
+                h="100%"
+                margin="auto"
+                pointerEvents="none"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  w="inherit"
+                  h="inherit"
+                  backgroundColor="#ADD8E6"
+                  opacity={0.4}
+                  borderRadius={12}
+                />
+
+                <Text as="h1" fontSize="6rem" transform="translateY(-2.35rem)">
+                  ...
+                </Text>
+              </MotionFlex>
+            )}
+          </AnimatePresence>
+        </MotionBox>
+      </MotionBox>
     </MotionBox>
   )
 }
