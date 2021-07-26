@@ -7,6 +7,7 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     '@chakra-ui/gatsby-plugin',
-    'gatsby-plugin-eslint'
+    'gatsby-plugin-eslint',
+    'gatsby-plugin-smoothscroll'
   ]
 }
