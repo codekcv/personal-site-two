@@ -32,6 +32,7 @@ const Card: React.FC<Props> = (props) => {
   const [zIndex, setZIndex] = useState(0)
   const [isHover, setIsHover] = useState(false)
   const posRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   delete styleProps.inView
   delete styleProps.isOpen
@@ -67,7 +68,13 @@ const Card: React.FC<Props> = (props) => {
     }
   }, [])
 
-  const handleOpen = () => setIsOpen(!isOpen)
+  const handleOpen = () => {
+    if (isOpen && cardRef?.current) {
+      cardRef.current.scroll({ top: 0, behavior: 'smooth' })
+    }
+
+    setIsOpen(!isOpen)
+  }
 
   return (
     <>
@@ -119,6 +126,8 @@ const Card: React.FC<Props> = (props) => {
           onHoverEnd={() => setIsHover(false)}
         >
           <MotionBox
+            ref={cardRef}
+            id="card-container"
             onClick={handleOpen}
             backgroundColor="white"
             cursor="pointer"
