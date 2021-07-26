@@ -125,7 +125,8 @@ const Card: React.FC<Props> = (props) => {
             border="1px dotted rgba(0, 0, 0, 0.1)"
             borderRadius={12}
             boxShadow="0 0.75rem 3rem 0em rgba(0, 0, 0, 0.05), 0 0.75rem 0rem 0rem rgba(0, 0, 0, 0.05)"
-            overflow="hidden"
+            overflowX="hidden"
+            overflowY={isOpen ? 'scroll' : 'hidden'}
             p="2rem"
             variants={{
               close: {},
@@ -154,6 +155,7 @@ const Card: React.FC<Props> = (props) => {
               {isOpen && (
                 <MotionBox
                   mt="-2rem"
+                  pr="2rem"
                   w="calc(1024px - 2rem)"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
