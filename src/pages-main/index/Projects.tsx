@@ -14,7 +14,7 @@ const projects = [
       'An open-source pluggable full-stack headless commerce solution made with TypeScript, React, Node.js, and GraphQL.',
     img: (
       <StaticImage
-        src="../../../images/headless_2.png"
+        src="../../images/headless_2.png"
         width={700}
         height={340}
         placeholder="blurred"

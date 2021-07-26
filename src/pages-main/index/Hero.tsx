@@ -103,7 +103,7 @@ const Hero = (): JSX.Element => {
       >
         <Flex flexDirection="column" alignItems="center">
           <StaticImage
-            src="../../../images/christian_villamin.jpg"
+            src="../../images/christian_villamin.jpg"
             width={256}
             height={256}
             placeholder="blurred"
