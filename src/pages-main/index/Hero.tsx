@@ -66,9 +66,11 @@ const contacts = [
     mt="1.5rem"
     whileHover={{ scale: 1.2 }}
   >
+    {/* <Bobble> */}
     <a href={item.link} target="_blank" rel="noopener noreferrer">
       {item.icon}
     </a>
+    {/* </Bobble> */}
   </MotionBox>
 ))
 
