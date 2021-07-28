@@ -136,77 +136,73 @@ const About = (): JSX.Element => {
             </Box>
 
             <Box mt="2rem">
-              <Heading as="h2">Programming History</Heading>
+              <Heading as="h2">Hobbies &amp; Interests</Heading>
 
-              <Text mt="1rem">
+              <Text mt="0.5rem">
+                I enjoy reading fantasy books &amp; mystery manga(
                 <a
-                  href="https://www.thehelper.net/members/nherwyziant.2291/"
+                  href="https://www.detectiveconanworld.com/wiki/Detective_Conan"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  I started programming in 2007 when I was 11
+                  名探偵コナン
                 </a>
-                , using Blizzard&apos;s event-driven scripting language
-                called&nbsp;
-                <a
-                  href="https://www.hiveworkshop.com/threads/beginning-jass-tutorial-series.30765/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  JASS
-                </a>
-                &nbsp;to make modifications and create custom maps in Warcraft
-                III. I learned it by reading guides &amp; documentations online,
-                and since then have enjoyed the art of programming to heart. I
-                made tower defense games, battle arenas, hero campaign maps,
-                etc. with it and played it with my local and online friends.
+                ). like walking around outside to arrange my thoughts. I drink
+                your average joe coffee 3x a day. I want to play Dungeons &amp;
+                Dragons. I like Silicon Valley, the place and the TV Show. I
+                don&apos;t play any computer games anymore, but sometimes I
+                still play.
               </Text>
 
-              <Text mt="1rem">
-                After that, I learned to program Java in 2012 to build basic
-                desktop app. In 2013, I joined a programming competition that
-                deals with solving algorithms and&nbsp;
+              <Text fontSize="1.5rem" mt="1rem">
+                - Playing Piano
+              </Text>
+
+              <Text>
+                I was taught piano with a teacher when I was 8, but I stopped
+                after a year because our piano broke and the repair was
+                expensive. Recenty, I got into playing the piano again. Mostly
+                classical.
+              </Text>
+
+              <Text mt="0.5rem">
                 <a
-                  href="https://codekcv.github.io/competition.jpg"
+                  href="https://www.youtube.com/watch?v=kriH9XzPF4Q"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  I won
+                  blindfold play 🙈
                 </a>
-                . In 2014, I decided to make a mobile game using the Android
-                Studio IDE and an awesome library called&nbsp;
+                &nbsp; |&nbsp;
                 <a
-                  href="https://libgdx.com/"
+                  href="https://www.youtube.com/watch?v=Cj82u5rjy3Y"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  libGDX
+                  feels play 🙊
                 </a>
-                . I made a 2D platform pixel-art running game. In 2016, I
-                decided to learn C# &amp; the basics of Blender, and moved to
-                Unity3D to make 1st person games, although nothing serious, just
-                for fun and messing around with my friends. I did learn maths in
-                3D, so that&apos;s nice.
               </Text>
 
-              <Text mt="1rem">
-                And now starting year, 2019, I&apos;m diving deep in the
-                beautiful world of web development and beyond.
+              <Text fontSize="1.5rem" mt="1rem">
+                - Favorite Shows
               </Text>
-            </Box>
 
-            <Box mt="2rem">
-              <Heading as="h2">Interests</Heading>
+              <Text>
+                Detective Conan, Avatar: The Last Airbender, Sherlock, Game o
+                Thrones, Breaking Bad, How To Get Away With Murder.
+              </Text>
 
-              <Text mt="1rem">
+              {/* <Text mt="1rem">
                 Cats, Detective Conan, Avatar: The Last Airbender, Kingdom
                 Hearts
-              </Text>
+              </Text> */}
               {/* <Text mt="1rem">
                 Animals, Detective Conan, Doctor Who, Avatar: The Last
                 Airbender, Full Metal Alchemist: Brotherhood, Kingdom Hearts
               </Text> */}
             </Box>
+
+            <Box border="1px solid red" height="320px" mt="2rem" />
           </>
         }
       />
