@@ -19,7 +19,8 @@ type Props = BoxProps & {
   setIsOpen: Dispatch<SetStateAction<boolean>>
   contentPrev: ReactNode
   contentFull: ReactNode
-  log?: string
+  direction?: string
+  inViewRef?: (node?: Element | null | undefined) => void
 }
 
 type SizeProps = null | { width: number; height: number }
@@ -76,6 +77,27 @@ const Card: React.FC<Props> = (props) => {
     setIsOpen(!isOpen)
   }
 
+  let transform = 'translate(0rem, -3rem)'
+
+  if (props?.direction) {
+    const { direction } = props
+
+    switch (direction) {
+      case 'left': {
+        transform = 'translate(3rem, 0rem)'
+        break
+      }
+      case 'right': {
+        transform = 'translate(-3rem, 0rem)'
+        break
+      }
+      case 'up': {
+        transform = 'translate(0rem, 3rem)'
+        break
+      }
+    }
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -102,12 +124,12 @@ const Card: React.FC<Props> = (props) => {
         variants={{
           out: {
             opacity: 0,
-            transform: 'translateY(-3rem)',
+            transform,
             transition: { duration: animDuration, ease: 'easeOut' }
           },
           in: {
             opacity: 1,
-            transform: 'translateY(0rem)',
+            transform: 'translate(0rem, 0rem)',
             transition: { duration: animDuration, ease: 'easeOut' }
           }
         }}
@@ -117,6 +139,7 @@ const Card: React.FC<Props> = (props) => {
         {...(size && { ...size })}
       >
         <MotionBox
+          {...(props?.inViewRef && { ref: props.inViewRef })}
           whileHover={{
             transform: isOpen
               ? 'initial'
