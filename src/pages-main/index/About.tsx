@@ -199,8 +199,13 @@ const About = (): JSX.Element => {
               <Heading as="h2">Interests</Heading>
 
               <Text mt="1rem">
-                Animals, Detective Conan, Doctor Who, Kingdom Hearts
+                Cats, Detective Conan, Avatar: The Last Airbender, Kingdom
+                Hearts
               </Text>
+              {/* <Text mt="1rem">
+                Animals, Detective Conan, Doctor Who, Avatar: The Last
+                Airbender, Full Metal Alchemist: Brotherhood, Kingdom Hearts
+              </Text> */}
             </Box>
           </>
         }
