@@ -64,6 +64,7 @@ const Stack = (): JSX.Element => {
           setIsOpen={setIsOpenBE}
           w="100%"
           mr="2rem"
+          direction="right"
           contentPrev={
             <>
               <Text textAlign="center">Back-End</Text>
@@ -73,7 +74,26 @@ const Stack = (): JSX.Element => {
               </Flex>
             </>
           }
-          contentFull={<></>}
+          contentFull={
+            <>
+              <Box textAlign="center">
+                <Box>
+                  <Heading as="h1">Current Favorite Stack:</Heading>
+
+                  <Text mt="0.5rem">
+                    TypeScript, Node.js, Koa, Apollo Server, PostgreSQL, Prisma,
+                    Nexus
+                  </Text>
+                </Box>
+
+                <Box mt="2rem">
+                  <Heading as="h1">Frameworks</Heading>
+
+                  <Text mt="0.5rem">Express, Koa, Fastify</Text>
+                </Box>
+              </Box>
+            </>
+          }
         />
 
         <Card
@@ -82,6 +102,7 @@ const Stack = (): JSX.Element => {
           setIsOpen={setIsOpenFE}
           w="100%"
           ml="2rem"
+          direction="left"
           contentPrev={
             <>
               <Text textAlign="center">Front-End</Text>
