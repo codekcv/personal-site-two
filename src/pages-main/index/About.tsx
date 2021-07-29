@@ -188,8 +188,17 @@ const About = (): JSX.Element => {
               </Text>
 
               <Text>
-                Detective Conan, Avatar: The Last Airbender, Sherlock, Game o
+                Detective Conan, Avatar: The Last Airbender, Sherlock, Game of
                 Thrones, Breaking Bad, How To Get Away With Murder.
+              </Text>
+
+              <Text fontSize="1.5rem" mt="1rem">
+                - Favorite Games
+              </Text>
+
+              <Text>
+                Kingdom Hearts series, Minecraft, Terraria, The Witness, Braid,
+                Runescape, DOTA 2
               </Text>
 
               {/* <Text mt="1rem">
