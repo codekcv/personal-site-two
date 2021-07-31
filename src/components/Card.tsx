@@ -19,7 +19,7 @@ type Props = BoxProps & {
   setIsOpen: Dispatch<SetStateAction<boolean>>
   contentPrev: ReactNode
   contentFull: ReactNode
-  direction?: string
+  direction?: 'left' | 'right' | 'up' // Default is down
   inViewRef?: (node?: Element | null | undefined) => void
 }
 
@@ -80,21 +80,16 @@ const Card: React.FC<Props> = (props) => {
   let transform = 'translate(0rem, -3rem)'
 
   if (props?.direction) {
-    const { direction } = props
+    const { direction: dir } = props
 
-    switch (direction) {
-      case 'left': {
-        transform = 'translate(3rem, 0rem)'
+    switch (dir) {
+      case 'left':
+      case 'right':
+        transform = `translate(${dir === 'left' ? '' : '-'}3rem, 0rem)`
         break
-      }
-      case 'right': {
-        transform = 'translate(-3rem, 0rem)'
-        break
-      }
-      case 'up': {
+      case 'up':
         transform = 'translate(0rem, 3rem)'
         break
-      }
     }
   }
 
